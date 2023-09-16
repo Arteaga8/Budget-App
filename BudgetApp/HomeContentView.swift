@@ -17,7 +17,7 @@ struct HomeContentView: View {
             Spacer()
             ListView()
         }
-        .background(.blue)
+        
     }
 }
 
