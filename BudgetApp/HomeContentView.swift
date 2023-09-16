@@ -15,18 +15,56 @@ struct HomeContentView: View {
         VStack {
             DashboardView(DvContent: "Dashboard")
             StatsView()
+        
             VStack {
                 IncomeView(Content: content[0], Content1: content1[0])
                 ExpensesView(Content: content[1], Content1: content1[1])
                 CreditCardView(content: content[2], content1: content1[2])
                 SavingView(content: content[3], content1: content1[3])
             }
-           
+            Spacer()
+            HStack(alignment: .center, spacing: 85) {
+                //HomeView Button
+              homeButtom
+                // ListView Buttom
+                listButtom
+                //GoalView Buttom
+               goalButtom
+                //Setting Buttom
+                Button {
+                    print("Setting")
+                } label: {
+                    Image(systemName: "gear")
+                }
+
+            }
+            .imageScale(.large)
+            .padding()
+        }.padding()
+    }
+    
+    var homeButtom: some View {
+        Button {
+            print("HomeView")
+        } label: {
+            Image(systemName: "house")
         }
-        .padding()
-        .background(.blue)
-        .ignoresSafeArea()
-        
+    }
+    
+    var listButtom: some View {
+        Button {
+            print("ListView")
+        } label: {
+            Image(systemName: "list.bullet")
+        }
+    }
+    
+    var goalButtom: some View {
+        Button {
+            print("GoalView")
+        } label: {
+            Image(systemName: "flag.checkered")
+        }
     }
 }
 
@@ -38,7 +76,6 @@ struct DashboardView: View {
             Spacer()
             Image(systemName: "bell").imageScale(.large)
         }
-        .padding()
     }
 }
     
@@ -54,7 +91,7 @@ struct StatsView: View {
                     .bold()
                     .foregroundColor(.black)
             }
-            .foregroundColor(.white)
+            .foregroundColor(.red)
     }
 }
 
@@ -73,7 +110,7 @@ struct IncomeView: View {
                 Text(Content).bold().foregroundColor(.black)
                 Text(Content1).bold().foregroundColor(.black)
             }
-        }.foregroundColor(.white)
+        }.foregroundColor(.gray)
     }
 }
 
@@ -91,7 +128,7 @@ struct ExpensesView: View {
                 Text(Content).bold().foregroundColor(.black)
                 Text(Content1).bold().foregroundColor(.black)
             }
-        }.foregroundColor(.white)
+        }.foregroundColor(.gray)
     }
 }
 
@@ -109,7 +146,7 @@ struct CreditCardView: View {
                 Text(content).bold().foregroundColor(.black)
                 Text(content1).bold().foregroundColor(.black)
             }
-        }.foregroundColor(.white)
+        }.foregroundColor(.gray)
     }
 }
 
@@ -127,7 +164,7 @@ struct SavingView: View {
                 Text(content).bold().foregroundColor(.black)
                 Text(content1).bold().foregroundColor(.black)
             }
-        }.foregroundColor(.white)
+        }.foregroundColor(.gray)
     }
 }
 
