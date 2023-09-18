@@ -27,10 +27,10 @@ struct HomeContentView: View {
                 listButtom
                 goalButtom
                 settingButtom
-            }
-            .imageScale(.large)
-            .padding()
-        }
+            }.imageScale(.large).foregroundColor(.black)
+            
+        }.padding()
+            .background(.blue)
     }
     
     
