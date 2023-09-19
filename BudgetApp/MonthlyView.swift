@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MonthlyView: View {
     var body: some View {
+        
         Text("Montthly View")
     }
 }

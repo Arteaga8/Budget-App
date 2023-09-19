@@ -9,7 +9,12 @@ import SwiftUI
 
 struct SettingView: View {
     var body: some View {
-        Text("Setting View")
+        Color.blue
+                    .overlay(
+                        Color.green
+                            .opacity(0.5) // Adjust the opacity to blend the colors
+                    )
+                    .edgesIgnoringSafeArea(.all)
     }
 }
 

@@ -6,33 +6,37 @@
 //
 
 import SwiftUI
+import Charts
 
+@available(iOS 17.0, *)
 struct HomeContentView: View {
     let name: [String] = ["Income", "Expenses", "Credit Card", "Saving"]
     let numbers: [String] = ["$10,000", "$5,000", "$8,000", "$20,000"]
     
     var body: some View {
-        VStack {
-            dashboardView
-            chartView
+        ZStack {
+            backgroundColor
             VStack {
-                IncomeView(content: name[0], content1: numbers[0])
-                ExpensesView(content: name[1], content1: numbers[1])
-                CreditCardView(content: name[2], content1: numbers[2])
-                SavingView(content: name[3], content1: numbers[3])
-            }
-            Spacer()
-            HStack(alignment: .center, spacing: 70) {
-                homeButtom
-                listButtom
-                goalButtom
-                settingButtom
-            }.imageScale(.large).foregroundColor(.black)
-            
-        }.padding()
-            .background(.blue)
+                dashboardView
+                chartView
+                VStack {
+                    IncomeView(content: name[0], content1: numbers[0])
+                    ExpensesView(content: name[1], content1: numbers[1])
+                    CreditCardView(content: name[2], content1: numbers[2])
+                    SavingView(content: name[3], content1: numbers[3])
+                }
+                ZStack {
+                    RoundedRectangle(cornerRadius: 2).frame(width: 400)
+                    HStack(alignment: .center, spacing: 70) {
+                        homeButtom
+                        listButtom
+                        goalButtom
+                        settingButtom
+                    }.imageScale(.large).foregroundColor(.black)
+                }.foregroundColor(.white)
+            } .edgesIgnoringSafeArea(.bottom)
+        }
     }
-    
     
     // DashboardView
     var dashboardView: some View {
@@ -41,20 +45,21 @@ struct HomeContentView: View {
             Spacer()
             Image(systemName: "bell").imageScale(.large)
         }
+        .foregroundColor(.white)
+        .padding()
     }
     //ChartView
+    @available(iOS 17.0, *)
     var chartView: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 350, height: 250)
             
-            
-            Text("Stats View")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.black)
+            BudgetChart()
+                .frame(width: 350, height: 250)
+                .foregroundColor(.red)
         }
-        .foregroundColor(.red)
+        .foregroundColor(.white)
     }
     
     //HomeView Button
@@ -89,81 +94,114 @@ struct HomeContentView: View {
             Image(systemName: "gear")
         }
     }
-}
-
-struct IncomeView: View {
-    var content: String
-    var content1: String
     
-    var body: some View {
-        
-        let shape = RoundedRectangle(cornerRadius: 10)
-
-        ZStack {
-            shape.frame(width: 350, height: 50)
-            
-            HStack(spacing: 180) {
-                Text(content).bold().foregroundColor(.black)
-                Text(content1).bold().foregroundColor(.black)
-            }
-        }.foregroundColor(.gray)
+    //Bacground Color
+    var backgroundColor: some View {
+        LinearGradient(
+            gradient: Gradient(colors: [Color.blue, Color.green]),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+        .edgesIgnoringSafeArea(.all)
     }
-}
-
-struct ExpensesView: View {
-    var content: String
-    var content1: String
     
-    var body: some View {
-        let shape = RoundedRectangle(cornerRadius: 10)
-        
-        ZStack {
-            shape.frame(width: 350, height: 50)
-            
-            HStack(spacing: 150) {
-                Text(content).bold().foregroundColor(.black)
-                Text(content1).bold().foregroundColor(.black)
-            }
-        }.foregroundColor(.gray)
-    }
-}
-
-struct CreditCardView: View {
-    var content: String
-    var content1: String
+    // Chart Data
+    @available(iOS 17.0, *)
+    struct BudgetChart: View   {
+        var data = [
+            BudgetDataPoint(category: "Income", amount: 1000),
+            BudgetDataPoint(category: "Expenses", amount: 500),
+            BudgetDataPoint(category: "Credit Card", amount: 900),
+            BudgetDataPoint(category: "Saving", amount: 400)
+        ]
     
-    var body: some View {
-        let shape = RoundedRectangle(cornerRadius: 10)
-        
-        ZStack {
-            shape.frame(width: 350, height: 50)
-            
-            HStack(spacing: 150) {
-                Text(content).bold().foregroundColor(.black)
-                Text(content1).bold().foregroundColor(.black)
-            }
-        }.foregroundColor(.gray)
+        var body: some View {
+            Chart {
+                ForEach (data) { d in
+                    SectorMark(angle: PlottableValue.value("Amount", d.amount),
+                               innerRadius: .ratio(0.5),
+                        angularInset: 2)
+                            .foregroundStyle(by: .value("Category", d.category))
+                            .cornerRadius(5)
+                }
+            }.padding()
+        }
     }
-}
-
-struct SavingView: View {
-    var content: String
-    var content1: String
     
-    var body: some View {
-        let shape = RoundedRectangle(cornerRadius: 10)
+    struct IncomeView: View {
+        var content: String
+        var content1: String
         
-        ZStack {
-            shape.frame(width: 350, height: 50)
+        var body: some View {
             
-            HStack(spacing: 175) {
-                Text(content).bold().foregroundColor(.black)
-                Text(content1).bold().foregroundColor(.black)
-            }
-        }.foregroundColor(.gray)
+            let shape = RoundedRectangle(cornerRadius: 10)
+            
+            ZStack {
+                shape.frame(width: 350, height: 65)
+                
+                HStack(spacing: 180) {
+                    Text(content).bold().foregroundColor(.black).font(.title3)
+                    Text(content1).bold().foregroundColor(.black).font(.title3)
+                }
+            }.foregroundColor(.white)
+        }
     }
-}
-
+    
+    struct ExpensesView: View {
+        var content: String
+        var content1: String
+        
+        var body: some View {
+            let shape = RoundedRectangle(cornerRadius: 10)
+            
+            ZStack {
+                shape.frame(width: 350, height: 65)
+                
+                HStack(spacing: 150) {
+                    Text(content).bold().foregroundColor(.black).font(.title3)
+                    Text(content1).bold().foregroundColor(.black).font(.title3)
+                }
+            }.foregroundColor(.white)
+        }
+    }
+    
+    struct CreditCardView: View {
+        var content: String
+        var content1: String
+        
+        var body: some View {
+            let shape = RoundedRectangle(cornerRadius: 10)
+            
+            ZStack {
+                shape.frame(width: 350, height: 65)
+                
+                HStack(spacing: 150) {
+                    Text(content).bold().foregroundColor(.black).font(.title3)
+                    Text(content1).bold().foregroundColor(.black).font(.title3)
+                }
+            }.foregroundColor(.white)
+        }
+    }
+    
+    struct SavingView: View {
+        var content: String
+        var content1: String
+        
+        var body: some View {
+            let shape = RoundedRectangle(cornerRadius: 10)
+            
+            ZStack {
+                shape.frame(width: 350, height: 65)
+                
+                HStack(spacing: 175) {
+                    Text(content).bold().foregroundColor(.black).font(.title3)
+                    Text(content1).bold().foregroundColor(.black).font(.title3)
+                }
+            }.foregroundColor(.white)
+        }
+    }
+    
+    
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
@@ -171,3 +209,4 @@ struct SavingView: View {
             
         }
     }
+}

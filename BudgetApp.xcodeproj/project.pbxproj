@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D5C25052ABBDFA200E81EF8 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C25042ABBDFA200E81EF8 /* DataPoint.swift */; };
 		7DA6BBB62AB3E0BA00AA690E /* BudgetAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6BBB52AB3E0BA00AA690E /* BudgetAppApp.swift */; };
 		7DA6BBB82AB3E0BA00AA690E /* HomeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6BBB72AB3E0BA00AA690E /* HomeContentView.swift */; };
 		7DA6BBBA2AB3E0BB00AA690E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6BBB92AB3E0BB00AA690E /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D5C25042ABBDFA200E81EF8 /* DataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
 		7DA6BBB22AB3E0BA00AA690E /* BudgetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DA6BBB52AB3E0BA00AA690E /* BudgetAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetAppApp.swift; sourceTree = "<group>"; };
 		7DA6BBB72AB3E0BA00AA690E /* HomeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				7DA6BBC32AB3EC9800AA690E /* MonthlyView.swift */,
 				7DA6BBC52AB3EDE800AA690E /* GoalView.swift */,
 				7DA6BBC72AB3EDFE00AA690E /* SettingView.swift */,
+				7D5C25042ABBDFA200E81EF8 /* DataPoint.swift */,
 				7DA6BBB92AB3E0BB00AA690E /* Assets.xcassets */,
 				7DA6BBBB2AB3E0BB00AA690E /* Preview Content */,
 			);
@@ -104,7 +107,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					7DA6BBB12AB3E0BA00AA690E = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D5C25052ABBDFA200E81EF8 /* DataPoint.swift in Sources */,
 				7DA6BBC42AB3EC9800AA690E /* MonthlyView.swift in Sources */,
 				7DA6BBC82AB3EDFE00AA690E /* SettingView.swift in Sources */,
 				7DA6BBB82AB3E0BA00AA690E /* HomeContentView.swift in Sources */,
@@ -193,6 +197,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -253,6 +258,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

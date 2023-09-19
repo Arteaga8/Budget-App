@@ -9,12 +9,18 @@ import SwiftUI
 
 struct GoalView: View {
     var body: some View {
-        Text("Goal View")
+        
+        GeometryReader { geometry in
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundColor(.blue) // Adjust color as needed
+                .frame(width: geometry.size.width, height: geometry.size.height - geometry.safeAreaInsets.bottom)
+        }
+        .edgesIgnoringSafeArea(.top)
     }
-}
-
-struct GoalView_Previews: PreviewProvider {
-    static var previews: some View {
-        GoalView()
+    
+    struct GoalView_Previews: PreviewProvider {
+        static var previews: some View {
+            GoalView()
+        }
     }
 }
